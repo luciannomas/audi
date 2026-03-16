@@ -5,7 +5,9 @@
       "Bash(mkdir:*)",
       "Bash(cp:*)",
       "Bash(npm install:*)",
-      "Bash(npx shadcn@latest:*)"
+      "Bash(npx shadcn@latest:*)",
+      "Bash(timeout 15 npm run:*)",
+      "Bash(curl:*)"
     ]
   }
 }

@@ -1,102 +1,134 @@
-import Image from "next/image";
+import ChatInterface from '@/components/ChatInterface';
+import { MessageSquare, Phone, MapPin, Clock } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-black text-white shadow-lg flex-shrink-0">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {/* Audi-inspired logo rings */}
+            <div className="flex -space-x-1.5">
+              {[0, 1, 2, 3].map(i => (
+                <div
+                  key={i}
+                  className="w-7 h-7 rounded-full border-2 border-white/90 bg-transparent"
+                />
+              ))}
+            </div>
+            <div>
+              <h1 className="font-bold text-lg leading-tight tracking-wide">AUDI HERCOS PARAYAS</h1>
+              <p className="text-gray-400 text-xs">Concesionario Oficial Audi</p>
+            </div>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <div className="hidden md:flex items-center gap-6 text-sm text-gray-300">
+            <div className="flex items-center gap-1.5">
+              <Phone className="w-3.5 h-3.5" />
+              <span>+34 942 123 456</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Parayas, Cantabria</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Red accent bar */}
+        <div className="h-0.5 bg-[#bb0a14]" />
+      </header>
+
+      {/* Hero section */}
+      <div className="bg-black text-white py-8 px-4">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-[#bb0a14]/20 border border-[#bb0a14]/40 rounded-full px-4 py-1.5 text-sm text-[#ff6b6b] mb-4">
+            <MessageSquare className="w-3.5 h-3.5" />
+            Asistente Virtual disponible 24/7
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            Reserve su cita fácilmente
+          </h2>
+          <p className="text-gray-400 text-sm md:text-base">
+            Nuestro asistente <span className="text-white font-medium">Alex</span> le ayudará a gestionar
+            su cita en pocos minutos. Revisiones, mantenimiento, reparaciones y lavado.
+          </p>
+        </div>
+      </div>
+
+      {/* Services bar */}
+      <div className="bg-gray-900 border-b border-gray-800">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex flex-wrap justify-center gap-4 md:gap-8">
+          {[
+            { label: 'Revisión', desc: 'Inspección y pre-ITV' },
+            { label: 'Reparación', desc: 'Mecánica y carrocería' },
+            { label: 'Mantenimiento', desc: 'Aceite, frenos, filtros' },
+            { label: 'Lavado', desc: 'Exterior e interior' },
+          ].map(s => (
+            <div key={s.label} className="text-center">
+              <p className="text-white text-xs font-semibold">{s.label}</p>
+              <p className="text-gray-500 text-xs">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Chat area */}
+      <main className="flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 py-6">
+        <div className="flex-1 bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 flex flex-col" style={{ minHeight: '500px', maxHeight: 'calc(100vh - 320px)' }}>
+          <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3 bg-gray-50">
+            <div className="w-8 h-8 bg-[#bb0a14] rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-xs">A</span>
+            </div>
+            <div>
+              <p className="font-semibold text-sm text-gray-800">Alex · Asistente Virtual</p>
+              <div className="flex items-center gap-1">
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                <span className="text-xs text-gray-500">En línea</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 overflow-hidden">
+            <ChatInterface />
+          </div>
+        </div>
+
+        {/* Info cards */}
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+            <div className="flex items-center gap-2 mb-2">
+              <Clock className="w-4 h-4 text-[#bb0a14]" />
+              <h3 className="font-semibold text-sm text-gray-800">Horario</h3>
+            </div>
+            <p className="text-xs text-gray-600">Lun–Vie: 8:00 – 19:00</p>
+            <p className="text-xs text-gray-600">Sábado: 9:00 – 14:00</p>
+            <p className="text-xs text-gray-400">Domingo: Cerrado</p>
+          </div>
+          <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+            <div className="flex items-center gap-2 mb-2">
+              <Phone className="w-4 h-4 text-[#bb0a14]" />
+              <h3 className="font-semibold text-sm text-gray-800">Contacto</h3>
+            </div>
+            <p className="text-xs text-gray-600">+34 942 123 456</p>
+            <p className="text-xs text-gray-600">taller@audihercos.com</p>
+          </div>
+          <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+            <div className="flex items-center gap-2 mb-2">
+              <MapPin className="w-4 h-4 text-[#bb0a14]" />
+              <h3 className="font-semibold text-sm text-gray-800">Ubicación</h3>
+            </div>
+            <p className="text-xs text-gray-600">Calle Principal 42</p>
+            <p className="text-xs text-gray-600">Parayas, Cantabria</p>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="bg-black text-gray-500 text-xs text-center py-4 mt-4">
+        <p>© 2024 Audi Hercos Parayas · Concesionario Oficial Audi</p>
+        <p className="mt-1">
+          <a href="/login" className="hover:text-gray-300 transition-colors">Acceso administración</a>
+        </p>
       </footer>
     </div>
   );
